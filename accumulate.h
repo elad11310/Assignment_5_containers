@@ -83,7 +83,7 @@ namespace itertools {
 
 
             bool operator==(const iterator &ri) const {
-                return itBegin == itEnd;
+                return itBegin == ri.itBegin;
             }
 
         };

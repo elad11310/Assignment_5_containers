@@ -26,8 +26,44 @@ public:
         itBegin(begin), itEnd(end), func(f){}
 
         auto operator* (){
-            return
+
+            while(func(*itBegin)){
+                ++itBegin;
+            }
+            return *(itBegin);
         }
+
+
+        // prefix ++i
+        iterator &operator ++(){
+            ++itBegin;
+            while(func(*itBegin) && itBegin!=itEnd){
+                ++itBegin;
+            }
+
+            return *this;
+
+        }
+
+        // postfix i++
+        iterator operator ++(int dummyFlag){
+            // giving the pointer to the first element in the object (itBegin).
+            iterator temp = *this;
+            ++itBegin;
+
+            return temp;
+        }
+
+        bool operator ==(iterator &other){
+            return itBegin == other.itBegin;
+        }
+        bool operator !=(iterator &other){
+            return !operator==(other);
+        }
+
+
+
+
 
     };
 
