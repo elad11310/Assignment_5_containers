@@ -3,22 +3,23 @@
 #include "accumulate.h"
 #include "filterfalse.h"
 #include "vector"
+#include "compress.h"
 
 using namespace itertools;
 using namespace std;
 
 
-struct lessThen3{
-    bool operator()(int i) const{
-        return i<3;
+struct lessThen3 {
+    bool operator()(int i) const {
+        return i < 3;
     }
 };
 
 
 int main() {
-//    for (int i: range(5,9))
-//       cout << i << " ";
-//
+    for (int i: range(5,9))
+       cout << i << " ";
+
     vector<int> vecInt = {1,2,3,4};
     vector<string> vecString = {"Hello", "Bye", "Adam"};
     vector<float> vecFloat = {-1, 0.3, 5.2, -8.3};
@@ -43,6 +44,23 @@ int main() {
     cout << endl << "filter fasle less then 3 in vector: " << endl;
     for(auto i:filterfalse(lessThen3{},vecInt))
         cout << i << " ";
+
+    string a = "abce";
+    vector<bool> vecBool = {true, true, false, true};
+
+
+    for (auto i:compress(a, vecBool)) {
+
+        cout << i << " ";
+
+    }
+
+
+    for (auto i:compress(range(5,9), vecBool)) {
+
+        cout << i << " ";
+
+    }
 
 
 
