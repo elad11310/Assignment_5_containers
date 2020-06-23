@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <cassert>
 #include <vector>
-
+#include <stdexcept>
 #ifndef MATALA5_CONTAINERS_RANGE_H
 #define MATALA5_CONTAINERS_RANGE_H
 
@@ -20,13 +20,17 @@ namespace itertools {
         range(const T Start, const T End, const T Step = 1) : kStart(Start), kEnd(End), step(Step) {
             // checking if the offset isn't 0
             // checking legal input
-            assert(kStart >= 0 && kEnd > 0 && kStart <= kEnd && step > 0);
+            if(!(kStart >= 0 && kEnd > 0 && kStart <= kEnd && step > 0)){
+                throw std::invalid_argument("input cannot be convert into range");
+            }
         }
 
         // default constructor.
 
         range(const T End) : kStart(0), kEnd(End), step(1) {
-            assert(kEnd > 0);
+            if(kEnd <0);{
+              throw  std::invalid_argument("input cannot be convert into range");
+            }
         }
 
 
